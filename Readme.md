@@ -56,12 +56,12 @@ Stops the container (if running) and starts it again.
 make test
 ```
 
-Sends a test request to the Ollama API using the `gemma3:latest` model.
+Sends a test request to the Ollama API using the `gemma3:1b` model.
 Example response (non-streaming):
 
 ```json
 {
-  "model": "gemma3:latest",
+  "model": "gemma3:1b",
   "created_at": "2025-09-18T12:34:56Z",
   "response": "The boy listens to music in the green house.",
   "done": true
@@ -87,35 +87,11 @@ You can interact with the containerized Ollama server via HTTP:
 ```bash
 curl -s http://localhost:11434/api/generate \
   -d '{
-    "model": "gemma3:latest",
-    "prompt": "Tell me a short joke.",
+    "model": "gemma3:1b",
+    "prompt": "Tell me a short joke about russians.",
     "stream": false
   }' | jq .
 ```
 
----
 
-## 📝 Notes
-
-* The image currently does **not** pre-pull the model during `docker build`.
-  You’ll need to pull it manually inside the container:
-
-  ```bash
-  docker exec -it intelligence.izdrail.com ollama pull gemma3:latest
-  ```
-* By default, Ollama stores models in `/root/.ollama`. If you want persistence across container restarts, mount a volume.
-
----
-
-## 🔥 Next Steps
-
-* Add GPU support with:
-
-  ```bash
-  docker run --gpus all -p 11434:11434 izdrail/intelligence.izdrail.com
-  ```
-* Extend the Makefile with a `pull-model` target for convenience.
-* Switch between models (e.g., `qwen3:1.7b`, `gemma3:latest`, etc.).
-
----
 
