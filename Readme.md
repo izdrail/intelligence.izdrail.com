@@ -87,7 +87,7 @@ You can interact with the containerized Ollama server via HTTP:
 ```bash
 curl -s http://localhost:11434/api/generate \
   -d '{
-    "model": "gemma3:1b",
+    "model": "gemma3:270m",
     "prompt": "Tell me a short joke about russians.",
     "stream": false
   }' | jq .
