@@ -21,7 +21,7 @@ restart: stop run
 
 # 🧪 Test the model
 test:
-	curl -s http://localhost:$(PORT)/api/generate -d "{\"model\": \"gemma3:270m\", \"prompt\": \"Rewrite the following text: The house is green and the boy listen to the music. \", \"stream\": false}" | jq .
+	curl -s http://localhost:$(PORT)/api/generate -d "{\"model\": \"llama3.2:1b\", \"prompt\": \"Rewrite the following text: The house is green and the boy listen to the music. \", \"stream\": false}" | jq .
 
 # 🧹 Clean up image + container
 clean: stop
