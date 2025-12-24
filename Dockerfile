@@ -30,4 +30,4 @@ HEALTHCHECK --interval=10s --timeout=5s --start-period=30s --retries=3 \
     CMD curl -f http://localhost:11434/api/tags || exit 1
 
 # Start Ollama server
-CMD ["ollama", "serve"]
+CMD ["serve"]
