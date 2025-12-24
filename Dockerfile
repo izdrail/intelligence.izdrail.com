@@ -16,8 +16,13 @@ RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
 # Create ollama user home directory
 RUN mkdir -p /root/.ollama
 
-# Start the server in background & pull the model
-RUN (ollama serve &) && sleep 5 && ollama pull gemma3:12b
+# Start the server in background & pull models
+RUN (ollama serve &) && sleep 5 && \
+    ollama pull gemma:7b && \
+    ollama pull mistral:7b && \
+    ollama pull neural-chat:7b && \
+    ollama pull dolphin-mixtral:8x7b && \
+    ollama pull orca-mini:13b
 
 # Expose API port
 EXPOSE 11434
@@ -27,4 +32,4 @@ HEALTHCHECK --interval=10s --timeout=5s --start-period=30s --retries=3 \
     CMD curl -f http://localhost:11434/api/tags || exit 1
 
 # Start Ollama server
-CMD ["serve"]
+CMD ["ollama", "serve"]
