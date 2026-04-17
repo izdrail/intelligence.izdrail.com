@@ -19,6 +19,7 @@ RUN mkdir -p /root/.ollama
 # Start the server in background & pull models
 RUN (ollama serve &) && sleep 5 && \
     ollama pull hf.co/kth8/gemma-3-270m-it-Email-Generator-GGUF && \
+    ollama pull hf.co/unixdevil/email-ai && \
     ollama pull gemma:7b && \
     ollama pull mistral:7b && \
     ollama pull neural-chat:7b
