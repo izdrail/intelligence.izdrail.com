@@ -19,6 +19,7 @@ RUN mkdir -p /root/.ollama
 # Start the server in background & pull models
 RUN (ollama serve &) && sleep 5 && \
     ollama pull hf.co/laravelcompany/laravelmail && \
+    ollama pull hf.co/yannelli/Laravel-11-Llama-3.2-1B-Instruct-GGUF:Q4_K_M
     ollama pull gemma:7b && \
     ollama pull mistral:7b && \
     ollama pull neural-chat:7b
