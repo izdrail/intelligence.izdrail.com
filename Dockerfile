@@ -22,6 +22,7 @@ RUN mkdir -p /root/.ollama
 RUN (ollama serve &) && sleep 5 && \
     ollama pull hf.co/laravelcompany/laravelmail && \
     ollama pull hf.co/yannelli/Laravel-11-Llama-3.2-1B-Instruct-GGUF:Q4_K_M && \
+    ollama pull gemma4:e4b && \
     ollama pull neural-chat:7b
 
 # Expose API port
