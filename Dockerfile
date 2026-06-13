@@ -1,6 +1,6 @@
 # Start from the official Ollama image
 FROM ollama/ollama:latest
-PARAMETER num_ctx 64000
+SET PARAMETER num_ctx 64000
 
 # Set environment variables for GPU support and performance
 ENV OLLAMA_HOST=0.0.0.0:11434
