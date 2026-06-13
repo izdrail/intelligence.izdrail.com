@@ -1,5 +1,6 @@
 # Start from the official Ollama image
 FROM ollama/ollama:latest
+PARAMETER num_ctx 64000
 
 # Set environment variables for GPU support and performance
 ENV OLLAMA_HOST=0.0.0.0:11434
@@ -9,6 +10,7 @@ ENV OLLAMA_MAX_LOADED_MODELS=1
 ENV OLLAMA_NUM_PARALLEL=1
 ENV CUDA_VISIBLE_DEVICES=0
 ENV OLLAMA_DEBUG=false
+ENV OLLAMA_CONTEXT_LENGTH=64000
 
 # Install curl for health checks
 RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
@@ -20,8 +22,6 @@ RUN mkdir -p /root/.ollama
 RUN (ollama serve &) && sleep 5 && \
     ollama pull hf.co/laravelcompany/laravelmail && \
     ollama pull hf.co/yannelli/Laravel-11-Llama-3.2-1B-Instruct-GGUF:Q4_K_M && \
-    ollama pull gemma:7b && \
-    ollama pull mistral:7b && \
     ollama pull neural-chat:7b
 
 # Expose API port
