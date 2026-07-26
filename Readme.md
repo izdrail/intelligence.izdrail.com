@@ -1,5 +1,18 @@
 # Intelligence
 
+<div align="center">
+  <img
+    src="https://github.com/izdrail.png?size=160"
+    alt="Owner avatar"
+    width="96"
+    height="96"
+  />
+
+  <p>
+    Dockerized Ollama setup for running language models locally.
+  </p>
+</div>
+
 This project provides a Dockerized setup of [Ollama](https://ollama.ai) with support for running the **Gemma3** model.  
 The included **Makefile** makes it easy to build, run, test, and manage the container.
 
@@ -92,6 +105,4 @@ curl -s http://localhost:11434/api/generate \
     "stream": false
   }' | jq .
 ```
-
-
 
