@@ -40,7 +40,7 @@ RUN (ollama serve &) && sleep 5 && \
     ollama pull hf.co/laravelcompany/laravelmail && \
     ollama pull hf.co/laravelcompany/laravelseo && \
     ollama pull gemma4:e2b && \
-    ollama pull neural-chat:7b
+    ollama pull gemma4:e4b
 
 # Expose API port
 EXPOSE 11434
