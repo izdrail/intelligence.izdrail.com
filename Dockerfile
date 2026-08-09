@@ -10,9 +10,9 @@ ENV OLLAMA_NUM_PARALLEL=1
 ENV OLLAMA_MAX_QUEUE=64
 ENV OLLAMA_ORIGINS=*
 ENV OLLAMA_NOPRUNE=1
-ENV OLLAMA_CONTEXT_LENGTH=64000
+ENV OLLAMA_CONTEXT_LENGTH=32768
 ENV OLLAMA_FLASH_ATTENTION=1
-ENV OLLAMA_KV_CACHE_TYPE=q8_0
+ENV OLLAMA_KV_CACHE_TYPE=q4_0
 ENV OLLAMA_GPU_OVERHEAD=2048
 ENV OLLAMA_LOAD_TIMEOUT=10m
 ENV OLLAMA_NEW_ENGINE=1
@@ -38,16 +38,11 @@ RUN mkdir -p /root/.ollama
 # Start the server in background & pull models
 RUN (ollama serve &) && sleep 5 && \
     ollama pull hf.co/laravelcompany/laravelmail && \
-    ollama pull hf.co/laravelcompany/laravelseo && \
     ollama pull gemma3:4b && \
     ollama pull gemma4:e2b
 
 # Expose API port
 EXPOSE 11434
-
-# Health check
-HEALTHCHECK --interval=10s --timeout=5s --start-period=30s --retries=3 \
-    CMD curl -f http://localhost:11434/api/tags || exit 1
 
 # Start Ollama server
 CMD ["serve"]
